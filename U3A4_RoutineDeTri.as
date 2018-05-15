@@ -1,4 +1,4 @@
-/*
+﻿/*
 Nom du fichier : U3A4_RoutineDeTri.as
 Programmeur : Dominik Dumas
 Date : 15 mai 2018
@@ -8,17 +8,17 @@ DEscription : Trier une liste de nombres de différentes façons
 package {
 
     // importations
-    import flash.display.*;
-    import flash.events.*;
+    import flash.display.MovieClip;
+    import flash.events.MouseEvent;
 
     public class U3A4_RoutineDeTri extends MovieClip
     {
 
         public function U3A4_RoutineDeTri()
         {
-
+			Trier(null);
             // event listeners
-            btnTrier.addEventListener(MouseEvent.CLICK, Trier)
+            //btnTrier.addEventListener(MouseEvent.CLICK, Trier)
 
         }
 
@@ -28,8 +28,11 @@ package {
             var arr:Array = new Array();
 
             trace(arr);
+			
+			var max = 10;
+			var min = 0;
 
-            for (var i = 0; i < 40; i++)
+            for (var i = 0; i < 10; i++)
             {
             
                 trace(i);
@@ -39,6 +42,7 @@ package {
             }
 
             var arrTrie:Array = BubbleSort(arr);
+			trace(arrTrie);
 
         }
 
@@ -57,7 +61,7 @@ package {
                 for (var index = 0; index < arr.length; index++)
                 {
 
-                    const element = arr[index];
+                    var element = arr[index];
 
                     if (element > arr[index+1])
                     {
