@@ -101,7 +101,7 @@ function QuickSort(arr, left, right) {
 
     if (size > 1) {
         
-        
+        // todo
 
     }
 
