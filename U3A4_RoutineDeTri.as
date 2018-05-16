@@ -77,6 +77,62 @@ package {
 
         }
 
+        public function SelectionSort(arr):Array
+        {
+
+            trace('selection sort');
+
+            for (var k = 0; k < arr.length; k++)
+            {
+
+                var element = arr[k];
+                var min_index = k;
+
+                for (var j = k + 1; j < arr.length; j++)
+                {
+
+                    if (arr[j] < arr[min_index])
+                    {
+                        min_index = j;
+                    }
+
+                }
+
+                arr[k] = arr[min_index];
+                arr[min_index] = element;
+
+            }
+
+            return arr;
+
+        }
+
+        public function InsertionSort(arr):Array
+        {
+
+            trace('insertion sort');
+
+           for (var k = 0; k < arr.length; k++)
+           {
+
+               var element = arr[k];
+               var j = k;
+
+               while (j > 0 && arr[j -1] > arr[j])
+               {
+
+                   arr[j] = arr[j - 1];
+                   arr[j - 1] = element;
+                   j = j - 1;
+
+               }
+
+           }
+
+           return arr;
+
+        }
+
     }
 
 }
