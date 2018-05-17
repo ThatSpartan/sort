@@ -15,32 +15,36 @@ package {
     {
 		
 		public var premiereFois:Boolean = true;
-		public const arrRadio:Array = [btnRadio1, btnRadio2, btnRadio3, btnRadio4];
+		public var methodeDeTri:String;
 
 		public function reglageRadio():void
 		{
 			
 			if (premiereFois)
 			{
-			
-				for each(var btn in arrRadio)
-				{
 				
-					btn.stop();
-					btn.addEventListener(MouseEvent.CLICK, btnRadio);
-				
-				}
-				
+				premiereFois = false;
+
+				btnRadio1.stop();
+				btnRadio1.addEventListener(MouseEvent.CLICK, btnRadio);
+					
+				btnRadio2.stop();
+				btnRadio2.addEventListener(MouseEvent.CLICK, btnRadio);
+					
+				btnRadio3.stop();
+				btnRadio3.addEventListener(MouseEvent.CLICK, btnRadio);
+					
+				btnRadio4.stop();
+				btnRadio4.addEventListener(MouseEvent.CLICK, btnRadio);
+
 			}
 			else
 			{
 				
-				for each(var btn in arrRadio)
-				{
-					
-					btn.gotoAndStop(1);
-					
-				}
+				btnRadio1.gotoAndStop(1);
+				btnRadio2.gotoAndStop(1);
+				btnRadio3.gotoAndStop(1);
+				btnRadio4.gotoAndStop(1);
 
 			}
 
@@ -49,24 +53,42 @@ package {
         public function U3A4_RoutineDeTri()
         {
 			
-			//reglageRadio();
-
-            arrRadio[0].addEventListener(MouseEvent.CLICK, btnRadio);
+			// établir les boutons radios
+			reglageRadio();
 			
-			Trier(null);
             // event listeners
-            //btnTrier.addEventListener(MouseEvent.CLICK, Trier)
+            btnTrier.addEventListener(MouseEvent.CLICK, Trier)
 
         }
 		
-		public function btnRadio(EVENT:MouseEvent)
+		public function btnRadio(EVENT:MouseEvent):void
 		{
 			
 			reglageRadio();
 			
 			var btn = EVENT.currentTarget;
 			btn.gotoAndStop(2);
-			return;
+			
+			switch (btn.name)
+			{
+				
+				case 'btnRadio1':
+					methodeDeTri = 'BubbleSort';
+					break;
+					
+				case 'btnRadio2':
+					methodeDeTri = 'SelectionSort';
+					break;
+					
+				case 'btnRadio3':
+					methodeDeTri = 'InsertionSort';
+					break;
+					
+				case 'btnRadio4':
+					methodeDeTri = 'QuickSort';
+					break;
+				
+			}trace(methodeDeTri);
 			
 		}
 
@@ -86,7 +108,8 @@ package {
             }
 
 			trace(arr);
-            var arrTrie:Array = QuickSort(arr);
+            //var arrTrie:Array = QuickSort(arr);
+			var arrTrie:Array = this[methodeDeTri](arr);
 			trace(arrTrie);
 
         }
@@ -95,8 +118,6 @@ package {
 
         public function BubbleSort(arr):Array
         {
-
-            trace('bubble sort');
 
             var changement:Boolean = true;
 
@@ -131,8 +152,6 @@ package {
         public function SelectionSort(arr):Array
         {
 
-            trace('selection sort');
-
             for (var k = 0; k < arr.length; k++)
             {
 
@@ -161,8 +180,6 @@ package {
         public function InsertionSort(arr):Array
         {
 
-            trace('insertion sort');
-
            for (var k = 0; k < arr.length; k++)
            {
 
@@ -186,7 +203,7 @@ package {
 
         public function QuickSort(arr):Array
         {
-            
+			
             if (arr.length <= 1) {
                 return arr;
             }
