@@ -41,13 +41,17 @@ package {
 					btn.gotoAndStop(1);
 					
 				}
+
 			}
+
 		}
 
         public function U3A4_RoutineDeTri()
         {
 			
 			//reglageRadio();
+
+            arrRadio[0].addEventListener(MouseEvent.CLICK, btnRadio);
 			
 			Trier(null);
             // event listeners
@@ -86,6 +90,8 @@ package {
 			trace(arrTrie);
 
         }
+
+        // function pour trier
 
         public function BubbleSort(arr):Array
         {
