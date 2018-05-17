@@ -137,6 +137,28 @@ package {
 
         }
 
+        public function QuickSort(arr):Array
+        {
+            
+            if (arr.length <= 1) {
+                return arr;
+            }
+
+            var pivot = arr[0];
+
+            var left = [];
+            var right = [];
+
+            for (var index = 1; index < arr.length; index++) {
+
+                arr[index] < pivot ? left.push(arr[index]) : right.push(arr[index]);
+
+            }
+
+            return QuickSort(left).concat(pivot, QuickSort(right));
+
+        }
+
     }
 
 }

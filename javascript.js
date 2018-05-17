@@ -1,4 +1,4 @@
-console.log('Hello')
+console.log('Hello');
 
 function print(val) {
     console.log(val);
@@ -11,33 +11,33 @@ function print(val) {
 //          swap(list[i], list[i+1])
 //       end if
 //    end for
-   
+
 //    return list
-   
+
 // end BubbleSort
 
 function BubbleSort(nlist) {
 
     print('bubble sort');
 
-    let _not_sorted = true;
+    let not_sorted = true;
 
-    while (_not_sorted) {
+    while (not_sorted) {
 
-        _not_sorted = false;
-     
+        not_sorted = false;
+
         for (let index = 0; index < nlist.length; index++) {
             const element = nlist[index];
-            
-            if (element > nlist[index+1]) {
-                
-                nlist[index] = nlist[index+1];
-                nlist[index+1] = element;
 
-                _not_sorted = true;
-    
+            if (element > nlist[index + 1]) {
+
+                nlist[index] = nlist[index + 1];
+                nlist[index + 1] = element;
+
+                not_sorted = true;
+
             }
-    
+
         }
 
     }
@@ -47,14 +47,14 @@ function BubbleSort(nlist) {
 function SelectionSort(nlist) {
 
     print('selection sort');
-    
+
     for (let k = 0; k < nlist.length; k++) {
         const element = nlist[k];
-        
+
         let min_index = k;
 
-        for (let j = k+1; j < nlist.length; j++) {
-            
+        for (let j = k + 1; j < nlist.length; j++) {
+
             if (nlist[j] < nlist[min_index]) {
                 min_index = j;
             }
@@ -71,14 +71,14 @@ function SelectionSort(nlist) {
 function InsertionSort(arr) {
 
     print('insertion sort');
-    
+
     for (let k = 0; k < arr.length; k++) {
         const element = arr[k];
-        
+
         let j = k;
 
         while (j > 0 && arr[j - 1] > arr[j]) {
-            
+
             arr[j] = arr[j - 1];
             arr[j - 1] = element;
             j = j - 1;
@@ -89,25 +89,28 @@ function InsertionSort(arr) {
 
 }
 
-function QuickSort(arr, left, right) {
+function QuickSort(arr) {
 
-    print('quick sort');
+    if (arr.length <= 1) {
+        return arr;
+    }
 
-    let l = left; print(`left : ${l}`);
-    let r = right - 1; print(`right : ${r}`);
-    let size = right - left; print(`size : ${size}`);
-    
-    print('-------')
+    let pivot = arr[0];
 
-    if (size > 1) {
-        
-        // todo
+    let left = [];
+    let right = [];
+
+    for (let index = 1; index < arr.length; index++) {
+
+        arr[index] < pivot ? left.push(arr[index]) : right.push(arr[index]);
 
     }
 
+    return QuickSort(left).concat(pivot, QuickSort(right));
+
 }
 
-let a = [4,6,5,7,3,10,32,1,23];
+let a = [4, 6, 5, 7, 3, 10, 32, 7, 1, 23];
 print(a);
-QuickSort(a, 0, a.length)
-print(a);
+let b = QuickSort(a);
+print(b);
