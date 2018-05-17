@@ -13,21 +13,63 @@ package {
 
     public class U3A4_RoutineDeTri extends MovieClip
     {
+		
+		public var premiereFois:Boolean = true;
+		public const arrRadio:Array = [btnRadio1, btnRadio2, btnRadio3, btnRadio4];
+
+		public function reglageRadio():void
+		{
+			
+			if (premiereFois)
+			{
+			
+				for each(var btn in arrRadio)
+				{
+				
+					btn.stop();
+					btn.addEventListener(MouseEvent.CLICK, btnRadio);
+				
+				}
+				
+			}
+			else
+			{
+				
+				for each(var btn in arrRadio)
+				{
+					
+					btn.gotoAndStop(1);
+					
+				}
+			}
+		}
 
         public function U3A4_RoutineDeTri()
         {
+			
+			//reglageRadio();
+			
 			Trier(null);
             // event listeners
             //btnTrier.addEventListener(MouseEvent.CLICK, Trier)
 
         }
+		
+		public function btnRadio(EVENT:MouseEvent)
+		{
+			
+			reglageRadio();
+			
+			var btn = EVENT.currentTarget;
+			btn.gotoAndStop(2);
+			return;
+			
+		}
 
         public function Trier(EVENT:MouseEvent):void
         {
 
             var arr:Array = new Array();
-
-            trace(arr);
 			
 			var max = 10;
 			var min = 0;
@@ -35,13 +77,12 @@ package {
             for (var i = 0; i < 10; i++)
             {
             
-                trace(i);
                 arr.push(Math.floor(Math.random()*(max-min)+min));
-                trace(arr);
 
             }
 
-            var arrTrie:Array = BubbleSort(arr);
+			trace(arr);
+            var arrTrie:Array = QuickSort(arr);
 			trace(arrTrie);
 
         }
